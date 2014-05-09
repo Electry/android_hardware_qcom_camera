@@ -605,6 +605,7 @@ public:
     int32_t  updateCurrentFocusPosition(int32_t pos);
     bool isDisplayFrameNeeded() { return m_bDisplayFrame; };
     int32_t setDisplayFrame(bool enabled) {m_bDisplayFrame=enabled; return 0;};
+    int32_t setIntEvent(cam_int_evt_params_t params);
 
 private:
     int32_t setPreviewSize(const QCameraParameters& );

@@ -2191,8 +2191,13 @@ bool QCamera2HardwareInterface::processUFDumps(qcamera_jpeg_evt_payload_t *evt)
        } else {
            strncpy(name, "0", CAM_FN_CNT - 1);
        }
+#ifdef USE_KK_CODE
        CAM_DUMP_TO_FILE("/data/local/ubifocus", name, index, "jpg",
            dataPtr, dataLen);
+#else
+       CAM_DUMP_TO_FILE("/data/misc/camera/ubifocus", name, index, "jpg",
+           dataPtr, dataLen);
+#endif
        ALOGE("%s:%d] Dump the image %d %d allFocusImage %d", __func__, __LINE__,
            getOutputImageCount(), index, allFocusImage);
        setOutputImageCount(getOutputImageCount() + 1);

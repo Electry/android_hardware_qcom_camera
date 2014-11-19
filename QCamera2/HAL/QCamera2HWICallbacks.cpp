@@ -1300,8 +1300,11 @@ void QCamera2HardwareInterface::dumpJpegToFile(const void *data,
                 mDumpFrmCnt = 0;
             }
             if (mDumpFrmCnt >= 0 && mDumpFrmCnt <= frm_num) {
+#ifdef USE_KK_CODE
                 snprintf(buf, sizeof(buf), "/data/%d_%d.jpg", mDumpFrmCnt, index);
-
+#else
+                snprintf(buf, sizeof(buf), "/data/misc/camera/%d_%d.jpg", mDumpFrmCnt, index);
+#endif
                 int file_fd = open(buf, O_RDWR | O_CREAT, 0777);
                 if (file_fd > 0) {
                     int written_len = write(file_fd, data, size);
@@ -1354,7 +1357,11 @@ void QCamera2HardwareInterface::dumpMetadataToFile(QCameraStream *stream,
             struct tm * timeinfo;
             time (&current_time);
             timeinfo = localtime (&current_time);
+#ifdef USE_KK_CODE
             strftime (timeBuf, sizeof(timeBuf),"/data/%Y%m%d%H%M%S", timeinfo);
+#else
+            strftime (timeBuf, sizeof(timeBuf),"/data/misc/camera/%Y%m%d%H%M%S", timeinfo);
+#endif
             String8 filePath(timeBuf);
             snprintf(buf, sizeof(buf), "%dm_%s_%d.bin",
                                          mDumpFrmCnt,type,frame->frame_idx);
@@ -1464,7 +1471,11 @@ void QCamera2HardwareInterface::dumpFrameToFile(QCameraStream *stream,
                     memset(&offset, 0, sizeof(cam_frame_len_offset_t));
                     stream->getFrameOffset(offset);
 
+#ifdef USE_KK_CODE
                     strftime (timeBuf, sizeof(timeBuf),"/data/%Y%m%d%H%M%S", timeinfo);
+#else
+                    strftime (timeBuf, sizeof(timeBuf),"/data/misc/camera/%Y%m%d%H%M%S", timeinfo);
+#endif
                     String8 filePath(timeBuf);
                     switch (dump_type) {
                     case QCAMERA_DUMP_FRM_PREVIEW:

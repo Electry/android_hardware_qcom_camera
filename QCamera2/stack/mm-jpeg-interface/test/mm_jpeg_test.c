@@ -58,9 +58,21 @@ typedef struct {
   char *out_filename;
 } jpeg_test_input_t;
 
+#ifdef USE_KK_CODE
 static jpeg_test_input_t jpeg_input[] = {
   {"/data/test.yuv", 1280, 720, "/data/test.jpg"}
 };
+#else
+static jpeg_test_input_t jpeg_input[] = {
+  {"/data/misc/camera/test_1.yuv", 4000, 3008, "/data/misc/camera/test_1.jpg", 0, 0},
+  {"/data/misc/camera/test_2.yuv", 4000, 3008, "/data/misc/camera/test_2.jpg", 0, 0},
+  {"/data/misc/camera/test_3.yuv", 4000, 3008, "/data/misc/camera/test_3.jpg", 0, 0},
+  {"/data/misc/camera/test_4.yuv", 4000, 3008, "/data/misc/camera/test_4.jpg", 0, 0},
+  {"/data/misc/camera/test_5.yuv", 4000, 3008, "/data/misc/camera/test_5.jpg", 0, 0},
+  {"/data/misc/camera/test_6.yuv", 4000, 3008, "/data/misc/camera/test_6.jpg", 0, 0},
+  {NULL, 0, 0, NULL, 0, 0}
+};
+#endif
 
 typedef struct {
   char *filename;

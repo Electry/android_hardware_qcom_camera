@@ -22,6 +22,8 @@ LOCAL_CFLAGS = -Wall -Werror
 # Debug logs are disabled
 LOCAL_CFLAGS += -DDISABLE_DEBUG_LOG
 
+LOCAL_CFLAGS += -DDEFAULT_DENOISE_MODE_ON
+
 LOCAL_C_INCLUDES := \
         $(LOCAL_PATH)/../stack/common \
         frameworks/native/include/media/openmax \

@@ -600,6 +600,7 @@ const QCameraParameters::QCameraMap QCameraParameters::CDS_MODES_MAP[] = {
 #define DATA_PTR(MEM_OBJ,INDEX) MEM_OBJ->getPtr( INDEX )
 #define MIN_PP_BUF_CNT 1
 
+int mExpTime30Fps = 0;
 
 /*===========================================================================
  * FUNCTION   : QCameraParameters
@@ -3688,6 +3689,29 @@ int32_t QCameraParameters::setMobicat(const QCameraParameters& )
     return ret;
 }
 
+void QCameraParameters::setExpTime30Fps(int onOff)
+{
+    int32_t expTimeUs;
+
+    mExpTime30Fps = onOff;
+
+    if (onOff > 0)
+        expTimeUs = 33333;
+    else
+        expTimeUs = 0;
+
+    AddSetParmEntryToBatch(m_pParamBuf,
+                           CAM_INTF_PARM_EXPOSURE_TIME,
+                           sizeof(expTimeUs),
+                           &expTimeUs);
+    commitParameters();
+}
+
+int QCameraParameters::getExpTime30Fps()
+{
+    return mExpTime30Fps;
+}
+
 /*===========================================================================
  * FUNCTION   : updateParameters
  *
@@ -5280,10 +5304,13 @@ int32_t  QCameraParameters::setExposureTime(const char *expTimeStr)
             (expTimeUs >= min_exp_time && expTimeUs <= max_exp_time)) {
             ALOGD("%s, exposure time: %d", __func__, expTimeUs);
             updateParamEntry(KEY_QC_EXPOSURE_TIME, expTimeStr);
-            return AddSetParmEntryToBatch(m_pParamBuf,
+            if (!mExpTime30Fps) {
+                return AddSetParmEntryToBatch(m_pParamBuf,
                                           CAM_INTF_PARM_EXPOSURE_TIME,
                                           sizeof(expTimeUs),
                                           &expTimeUs);
+            }
+            return NO_ERROR;
         }
     }
 

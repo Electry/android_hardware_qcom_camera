@@ -602,6 +602,8 @@ public:
     int32_t  updateCurrentFocusPosition(int32_t pos);
     bool isDisplayFrameNeeded() { return m_bDisplayFrame; };
     int32_t setDisplayFrame(bool enabled) {m_bDisplayFrame=enabled; return 0;};
+    void setExpTime30Fps(int onOff);
+    int getExpTime30Fps();
 
 private:
     int32_t setPreviewSize(const QCameraParameters& );

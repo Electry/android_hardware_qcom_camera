@@ -597,7 +597,6 @@ private:
     int32_t mMetadataJob;
     int32_t mReprocJob;
     int32_t mOutputCount;
-    QCameraVideoMemory *mVideoMem;
 };
 
 }; // namespace qcamera

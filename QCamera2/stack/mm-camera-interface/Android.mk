@@ -49,6 +49,11 @@ ifneq ($(call is-platform-sdk-version-at-least,17),true)
 endif
 LOCAL_CFLAGS += -Wall -Wextra -Werror
 
+LOCAL_CLANG_CFLAGS += \
+        -Wno-error=memsize-comparison \
+        -Wno-error=missing-field-initializers \
+        -Wno-error=pointer-bool-conversion
+
 LOCAL_SRC_FILES := $(MM_CAM_FILES)
 
 LOCAL_MODULE           := libmmcamera_interface

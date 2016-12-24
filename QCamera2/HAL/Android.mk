@@ -19,6 +19,13 @@ LOCAL_SRC_FILES := \
 
 LOCAL_CFLAGS = -Wall -Wextra -Werror
 
+LOCAL_CLANG_CFLAGS += \
+        -Wno-error=unused-private-field \
+        -Wno-error=strlcpy-strlcat-size \
+        -Wno-error=gnu-designator \
+        -Wno-error=unused-variable \
+        -Wno-error=format
+
 #Debug logs are enabled
 #LOCAL_CFLAGS += -DDISABLE_DEBUG_LOG
 

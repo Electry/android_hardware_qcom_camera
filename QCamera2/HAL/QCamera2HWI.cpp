@@ -39,6 +39,8 @@
 #include "QCamera2HWI.h"
 #include "QCameraMem.h"
 
+#include "QCamera2Injector.h"
+
 #define MAP_TO_DRIVER_COORDINATE(val, base, scale, offset) (val * scale / base + offset)
 #define CAMERA_MIN_STREAMING_BUFFERS     3
 #define EXTRA_ZSL_PREVIEW_STREAM_BUF     3
@@ -1094,6 +1096,9 @@ int QCamera2HardwareInterface::openCamera()
                                               camEvtHandle,
                                               (void *) this);
 
+    /* inject camera parameters */
+    QCamera2Injector::inject(gCamCapability[mCameraId], mCameraId);
+
     /* get max pic size for jpeg work buf calculation*/
     for(i = 0; i < gCamCapability[mCameraId]->picture_sizes_tbl_cnt - 1; i++)
     {
@@ -1107,12 +1112,14 @@ int QCamera2HardwareInterface::openCamera()
       }
     }
     //reset the preview and video sizes tables in case they were changed earlier
+#if 0
     copyList(savedSizes[mCameraId].all_preview_sizes, gCamCapability[mCameraId]->preview_sizes_tbl,
              savedSizes[mCameraId].all_preview_sizes_cnt);
     gCamCapability[mCameraId]->preview_sizes_tbl_cnt = savedSizes[mCameraId].all_preview_sizes_cnt;
     copyList(savedSizes[mCameraId].all_video_sizes, gCamCapability[mCameraId]->video_sizes_tbl,
              savedSizes[mCameraId].all_video_sizes_cnt);
     gCamCapability[mCameraId]->video_sizes_tbl_cnt = savedSizes[mCameraId].all_video_sizes_cnt;
+#endif
 
     //check if video size 4k x 2k support is enabled
     property_get("persist.camera.4k2k.enable", value, "0");

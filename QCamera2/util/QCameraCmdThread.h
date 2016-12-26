@@ -32,6 +32,8 @@
 
 #include <pthread.h>
 #include <cam_semaphore.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "cam_types.h"
 #include "QCameraQueue.h"

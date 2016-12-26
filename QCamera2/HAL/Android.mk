@@ -15,7 +15,8 @@ LOCAL_SRC_FILES := \
         QCamera2HWICallbacks.cpp \
         QCameraParameters.cpp \
         QCameraThermalAdapter.cpp \
-        wrapper/QualcommCamera.cpp
+        wrapper/QualcommCamera.cpp \
+        QCamera2Injector.cpp
 
 LOCAL_CFLAGS = -Wall -Werror
 

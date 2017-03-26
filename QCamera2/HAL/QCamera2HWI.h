@@ -595,6 +595,8 @@ private:
     int32_t mMetadataJob;
     int32_t mReprocJob;
     int32_t mOutputCount;
+    nsecs_t mLastAFScanTime;
+    nsecs_t mLastCaptureTime;
 };
 
 }; // namespace qcamera

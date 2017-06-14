@@ -47,7 +47,8 @@ LOCAL_CFLAGS += -Wall -Werror
 
 LOCAL_CLANG_CFLAGS += \
         -Wno-error=implicit-function-declaration \
-	-Wno-error=missing-field-initializers
+	-Wno-error=missing-field-initializers \
+        -Wno-error=memsize-comparison
 
 LOCAL_SRC_FILES := $(MM_CAM_FILES)
 

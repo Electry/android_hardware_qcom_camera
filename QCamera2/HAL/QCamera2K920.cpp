@@ -203,7 +203,7 @@ cam_dimension_t QCamera2Injector::picture_sizes_tbl[] = {
 /* capabilities specific to HAL 1 */
 
 int32_t QCamera2Injector::modes_supported = CAM_MODE_2D;
-uint32_t QCamera2Injector::sensor_mount_angle = 90;
+uint32_t QCamera2Injector::sensor_mount_angle = 0;
 
 float QCamera2Injector::focal_length = 4.3f;
 float QCamera2Injector::hor_view_angle = 69.6f;

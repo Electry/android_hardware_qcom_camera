@@ -4276,6 +4276,7 @@ int32_t QCamera2HardwareInterface::addCaptureChannel()
         delete pChannel;
         return rc;
     }
+    ALOGE("@@@ Init capture channel %d", rc);
 
     // meta data stream always coexists with snapshot in regular capture case
     rc = addStreamToChannel(pChannel, CAM_STREAM_TYPE_METADATA,
@@ -4328,6 +4329,7 @@ int32_t QCamera2HardwareInterface::addCaptureChannel()
         }
     }
 
+    ALOGE("@@@ Finish adding CC");
     m_channels[QCAMERA_CH_TYPE_CAPTURE] = pChannel;
     return rc;
 }

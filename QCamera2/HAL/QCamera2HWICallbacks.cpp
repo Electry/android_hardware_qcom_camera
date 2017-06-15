@@ -35,6 +35,8 @@
 #include <utils/Timers.h>
 #include "QCamera2HWI.h"
 
+#define LOG_NDEBUG 0
+
 namespace qcamera {
 
 /*===========================================================================
@@ -979,6 +981,7 @@ void QCamera2HardwareInterface::metadata_stream_cb_routine(mm_camera_super_buf_t
        !pme->mLongshotEnabled) {
        //Make shutter call back in non ZSL mode once raw frame is received from VFE.
        pme->playShutter();
+       ALOGE("Playing shutter @@@@");
     }
 
     if (pMetaData->is_tuning_params_valid && pme->mParameters.getRecordingHintValue() == true) {

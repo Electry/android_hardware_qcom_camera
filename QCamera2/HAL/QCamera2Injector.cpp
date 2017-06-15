@@ -169,10 +169,10 @@ void QCamera2Injector::inject(cam_capability_t *camCapability, int cameraId)
     //camCapability->hdr_bracketing_setting = hdr_bracketing_setting;
 
     camCapability->qcom_supported_feature_mask = qcom_supported_feature_mask;
-    camCapability->padding_info = padding_info;
+    //camCapability->padding_info = padding_info;
 
-    camCapability->min_num_pp_bufs = min_num_pp_bufs;
-    camCapability->min_required_pp_mask = min_required_pp_mask;
+    //camCapability->min_num_pp_bufs = min_num_pp_bufs;
+    //camCapability->min_required_pp_mask = min_required_pp_mask;
 }
 
 }; // namespace qcamera

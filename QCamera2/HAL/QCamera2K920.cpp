@@ -238,6 +238,9 @@ cam_dimension_t QCamera2Injector::preview_sizes_tbl[] = {
 /* supported video sizes */
 size_t QCamera2Injector::video_sizes_tbl_cnt = 13;
 cam_dimension_t QCamera2Injector::video_sizes_tbl[] = {
+/*haxx*/
+    {4096, 2160},
+/*stock*/
     {3840, 2160},
     {2560, 1440},
     {1920, 1440},
@@ -278,9 +281,10 @@ cam_dimension_t QCamera2Injector::livesnapshot_sizes_tbl[] = {
 };
 
 /* supported HFR */
-size_t QCamera2Injector::hfr_tbl_cnt = 0;
+size_t QCamera2Injector::hfr_tbl_cnt = 2;
 cam_hfr_info_t QCamera2Injector::hfr_tbl[] = {
-    //{CAM_HFR_MODE_120FPS, {1280, 720}, 0, livesnapshot_sizes_tbl_cnt, livesnapshot_sizes_tbl}
+    {CAM_HFR_MODE_60FPS, {1920, 1080}, 0, /*snapshot_cnt*/0, /*snapshot_table*/{}},
+    {CAM_HFR_MODE_120FPS, {1280, 720}, 0, /*snapshot_cnt*/0, /*snapshot_table*/{}},
 };
 
 /* supported preview formats */

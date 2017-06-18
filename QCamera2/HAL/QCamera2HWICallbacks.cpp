@@ -26,7 +26,7 @@
 * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 */
-
+#define LOG_NDEBUG 0
 #define LOG_TAG "QCamera2HWI"
 
 #include <time.h>
@@ -35,8 +35,6 @@
 #include <utils/Errors.h>
 #include <utils/Timers.h>
 #include "QCamera2HWI.h"
-
-#define LOG_NDEBUG 0
 
 namespace qcamera {
 

@@ -1007,10 +1007,12 @@ typedef enum {
     CAM_INTF_PARM_FRAMESKIP,
     CAM_INTF_PARM_ZSL_MODE,  /* indicating if it's running in ZSL mode */
     CAM_INTF_PARM_HDR_NEED_1X, /* if HDR needs 1x output */ /* 40 */
-    CAM_INTF_PARM_VIDEO_HDR,
+    CAM_INTF_PARM_VIDEO_HDR, // 0x2E
+    LENOVO_INTF_UNK_ZSL_HDR, // QCameraParameters::setZslHdr()
+    LENOVO_INTF_UNK_CHANGE_EXP, // QCameraParameters::notifyChangeExp()
     CAM_INTF_PARM_ROTATION,
     CAM_INTF_PARM_SCALE,
-    CAM_INTF_PARM_VT, /* indicating if it's a Video Call Apllication */
+    CAM_INTF_PARM_VT, // 0x33 /* indicating if it's a Video Call Apllication */
     CAM_INTF_META_CROP_DATA,
     CAM_INTF_META_PREP_SNAPSHOT_DONE,
     CAM_INTF_META_GOOD_FRAME_IDX_RANGE,

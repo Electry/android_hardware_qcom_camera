@@ -72,9 +72,9 @@
   } \
 })
 
-#define MAX_ZOOMS_CNT 52
-#define MAX_SIZES_CNT 32
-#define MAX_EXP_BRACKETING_LENGTH 32
+#define MAX_ZOOMS_CNT 49
+#define MAX_SIZES_CNT 33
+#define MAX_EXP_BRACKETING_LENGTH 48
 #define MAX_ROI 5
 #define MAX_STREAM_NUM_IN_BUNDLE 4
 #define MAX_NUM_STREAMS          8
@@ -433,7 +433,6 @@ typedef enum {
     CAM_ISO_MODE_400,
     CAM_ISO_MODE_800,
     CAM_ISO_MODE_1600,
-    CAM_ISO_MODE_3200,
     CAM_ISO_MODE_MAX
 } cam_iso_mode_type;
 

@@ -433,6 +433,7 @@ typedef enum {
     CAM_ISO_MODE_400,
     CAM_ISO_MODE_800,
     CAM_ISO_MODE_1600,
+    CAM_ISO_MODE_3200,
     CAM_ISO_MODE_MAX
 } cam_iso_mode_type;
 
@@ -845,11 +846,13 @@ typedef struct {
     int settled;
     uint32_t exp_index;
     uint32_t line_count;
+    char lenovo_unk[4];
 } cam_ae_params_t;
 
 typedef struct {
     int32_t cct_value;
     int32_t decision;
+    char lenovo_unk[12];
 } cam_awb_params_t;
 
 typedef struct {

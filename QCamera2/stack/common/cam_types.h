@@ -1177,6 +1177,10 @@ typedef enum {
     CAM_INTF_PARM_FLASH_BRACKETING,
     CAM_INTF_PARM_GET_IMG_PROP,
 
+    // Lenovo additions
+    CAM_INTF_PARM_FORCE_3A,
+    CAM_INTF_PARM_ZSL_ENHANCEMENT,
+
     CAM_INTF_PARM_MAX
 } cam_intf_parm_type_t;
 

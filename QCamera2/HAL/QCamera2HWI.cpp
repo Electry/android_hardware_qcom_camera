@@ -430,6 +430,10 @@ int QCamera2HardwareInterface::start_recording(struct camera_device *device)
     snprintf(video_size, sizeof(video_size), "%dx%d", width, height);
     params.set("preview-size", video_size);
 
+    if ((width * height) >= (1280 * 720)) {
+        params.set("preview-format", "nv12-venus");
+    }
+
     hw->set_parameters(device, params.flatten().string());
 
     // Restart preview to update changes

@@ -1048,9 +1048,6 @@ int QCamera2HardwareInterface::openCamera(struct hw_device_t **hw_device)
     rc = openCamera();
     if (rc == NO_ERROR){
         *hw_device = &mCameraDevice.common;
-        if (m_thermalAdapter.init(this) != 0) {
-          ALOGE("Init thermal adapter failed");
-        }
     }
     else
         *hw_device = NULL;
@@ -1135,11 +1132,6 @@ int QCamera2HardwareInterface::openCamera()
 
     mParameters.init(gCamCapability[mCameraId], mCameraHandle, this, this);
 
-    rc = m_thermalAdapter.init(this);
-    if (rc != 0) {
-        ALOGE("Init thermal adapter failed");
-    }
-
     mCameraOpened = true;
 
     return NO_ERROR;
@@ -1181,8 +1173,6 @@ int QCamera2HardwareInterface::closeCamera()
     // stop and deinit postprocessor
     m_postprocessor.stop();
     m_postprocessor.deinit();
-
-    m_thermalAdapter.deinit();
 
     // delete all channels if not already deleted
     for (i = 0; i < QCAMERA_CH_TYPE_MAX; i++) {

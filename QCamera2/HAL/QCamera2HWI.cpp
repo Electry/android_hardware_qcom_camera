@@ -411,12 +411,31 @@ int QCamera2HardwareInterface::store_meta_data_in_buffers(
 int QCamera2HardwareInterface::start_recording(struct camera_device *device)
 {
     int ret = NO_ERROR;
+    int width, height;
+    char *orig_params;
+    char video_size[10];
+    android::CameraParameters params;
+
     QCamera2HardwareInterface *hw =
         reinterpret_cast<QCamera2HardwareInterface *>(device->priv);
     if (!hw) {
         ALOGE("NULL camera device");
         return BAD_VALUE;
     }
+
+    orig_params = hw->getParameters();
+    params.unflatten(android::String8(orig_params));
+    hw->mParameters.getVideoSize(&width, &height);
+
+    snprintf(video_size, sizeof(video_size), "%dx%d", width, height);
+    params.set("preview-size", video_size);
+
+    hw->set_parameters(device, params.flatten().string());
+
+    // Restart preview to update changes
+    hw->stop_preview(device);
+    hw->start_preview(device);
+
     ALOGE("[KPI Perf] %s: E PROFILE_START_RECORDING", __func__);
     hw->lockAPI();
     ret = hw->processAPI(QCAMERA_SM_EVT_START_RECORDING, NULL);

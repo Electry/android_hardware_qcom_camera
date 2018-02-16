@@ -415,6 +415,7 @@ int QCamera2HardwareInterface::start_recording(struct camera_device *device)
     char *orig_params;
     char video_size[10];
     android::CameraParameters params;
+    const char *hfrStr, *hsrStr;
 
     QCamera2HardwareInterface *hw =
         reinterpret_cast<QCamera2HardwareInterface *>(device->priv);
@@ -432,6 +433,13 @@ int QCamera2HardwareInterface::start_recording(struct camera_device *device)
 
     if ((width * height) >= (1280 * 720)) {
         params.set("preview-format", "nv12-venus");
+    }
+
+    hfrStr = params.get("video-hfr");
+    hsrStr = params.get("video-hsr");
+    if ((hfrStr != NULL && strcmp(hfrStr, "off")) ||
+        (hsrStr != NULL && strcmp(hsrStr, "off"))) {
+        params.set("preview-format", "yuv420sp");
     }
 
     hw->set_parameters(device, params.flatten().string());

@@ -28,6 +28,18 @@ void QCamera2Injector::inject(cam_capability_t *camCapability, int cameraId)
         camCapability->video_sizes_tbl[0] = {4096, 2160};
         camCapability->video_sizes_tbl_cnt++;
 
+    } else if (cameraId == CAM_POSITION_FRONT) {
+        /* supported preview sizes */
+        for (i = camCapability->preview_sizes_tbl_cnt; i > 0; i--)
+            camCapability->preview_sizes_tbl[i] = camCapability->preview_sizes_tbl[i - 1];
+        camCapability->preview_sizes_tbl[0] = {2560, 1440};
+        camCapability->preview_sizes_tbl_cnt++;
+
+        /* supported video sizes */
+        for (i = camCapability->video_sizes_tbl_cnt; i > 0; i--)
+            camCapability->video_sizes_tbl[i] = camCapability->video_sizes_tbl[i - 1];
+        camCapability->video_sizes_tbl[0] = {2560, 1440};
+        camCapability->video_sizes_tbl_cnt++;
     }
 
     /* supported fps ranges */

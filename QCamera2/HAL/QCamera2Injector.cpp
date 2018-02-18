@@ -14,6 +14,10 @@ void QCamera2Injector::inject(cam_capability_t *camCapability, int cameraId)
         camCapability->hfr_tbl_cnt = 1;
         camCapability->hfr_tbl[0].mode = CAM_HFR_MODE_60FPS;
     }
+
+    /* supported fps ranges */
+    camCapability->fps_ranges_tbl_cnt = 2;
+    camCapability->fps_ranges_tbl[1] = {30.0f, 30.0f, 30.0f, 30.0f};
 }
 
 }; // namespace qcamera

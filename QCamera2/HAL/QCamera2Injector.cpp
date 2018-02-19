@@ -28,6 +28,11 @@ void QCamera2Injector::inject(cam_capability_t *camCapability, int cameraId)
         camCapability->video_sizes_tbl[0] = {4096, 2160};
         camCapability->video_sizes_tbl_cnt++;
 
+        /* supported fps ranges */
+        camCapability->fps_ranges_tbl_cnt = 3;
+        camCapability->fps_ranges_tbl[1] = {30.0f, 30.0f, 30.0f, 30.0f};
+        camCapability->fps_ranges_tbl[2] = {60.0f, 60.0f, 60.0f, 60.0f};
+
     } else if (cameraId == CAM_POSITION_FRONT) {
         /* supported preview sizes */
         for (i = camCapability->preview_sizes_tbl_cnt; i > 0; i--)
@@ -40,11 +45,11 @@ void QCamera2Injector::inject(cam_capability_t *camCapability, int cameraId)
             camCapability->video_sizes_tbl[i] = camCapability->video_sizes_tbl[i - 1];
         camCapability->video_sizes_tbl[0] = {2560, 1440};
         camCapability->video_sizes_tbl_cnt++;
-    }
 
-    /* supported fps ranges */
-    camCapability->fps_ranges_tbl_cnt = 2;
-    camCapability->fps_ranges_tbl[1] = {30.0f, 30.0f, 30.0f, 30.0f};
+        /* supported fps ranges */
+        camCapability->fps_ranges_tbl_cnt = 2;
+        camCapability->fps_ranges_tbl[1] = {30.0f, 30.0f, 30.0f, 30.0f};
+    }
 }
 
 }; // namespace qcamera
